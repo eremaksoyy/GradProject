@@ -1,0 +1,138 @@
+<html>
+<head>
+	<title> Welcome to GUI based queue simulation :) </title>
+     <script type="text/javascript">
+
+        function dragStart(ev) {
+            ev.dataTransfer.effectAllowed='move';
+            ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
+            ev.dataTransfer.setDragImage(ev.target,0,0);
+            return true;
+        }
+        function dragEnter(ev) {
+            event.preventDefault();
+            return true;
+        }
+        function dragOver(ev) {
+            return false;
+        }
+        function dragDrop(ev) {
+            /*var src = ev.dataTransfer.getData("Text");
+            ev.target.appendChild(document.getElementById(src));
+            ev.stopPropagation();
+            return false;*/
+			ev.preventDefault();
+           var data=ev.dataTransfer.getData("Text");
+            var nodeCopy = document.getElementById(data).cloneNode(true);
+            nodeCopy.id = "newId"; /* We cannot use the same ID */
+            ev.target.appendChild(nodeCopy);
+			return false
+        }
+
+    </script>
+
+	<style>
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		width: 200px;
+		background-color: #f1f1f1;
+		border: 1px solid #555;
+	 font-weight:bold;
+	}
+
+	li a {
+		display: block;
+		color: #000;
+		padding: 8px 16px;
+		text-decoration: none;
+	}
+
+	li {
+		text-align: center;
+		border-bottom: 1px solid #555;
+	}
+
+	li:last-child {
+		border-bottom: none;
+	}
+
+	li a.active {
+		background-color: #020005;
+		color: white;
+	}
+
+	li a:hover:not(.active) {
+		background-color: #555;
+		color: white;
+	}
+
+	.navbar {
+	  width: 100%;
+	  background-color: #555;
+	  overflow: auto;
+	}
+
+	.navbar a {
+	  float: left;
+	  text-align: center;
+	  padding: 12px;
+	  color: white;
+	  text-decoration: none;
+	  font-size: 17px;
+	}
+
+	.navbar a:hover {
+	  background-color: #000;
+	}
+
+	.active {
+	  background-color: #04AA6D;
+	}
+
+	@media screen and (max-width: 500px) {
+	  .navbar a {
+		float: none;
+		display: block;
+	  }
+}
+	</style>
+
+    <style type="text/css">
+         #boxA, #boxB {
+            float:left;padding:10px;margin:10px;-moz-user-select:none;
+         }
+         #boxA { background-color: #6633FF; width:75px; height:75px;  }
+         #boxB { background-color: #FF6699; width:1000px; height:200px; }
+     </style>
+</head>
+<body>
+    <form id="drag-drop-items" action="/dragitems" method="GET">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <nav class="navbar">
+      <img class="logo" src="../static/images/logo.jpg" style="width:200px;height:100px;" ALIGN = left>
+      <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+      <a href="/input"><i class="fa fa-caret-square-o-right"></i> Run Simulation</a>
+      <a href="/help"><i class="fa fa-hand-o-up"></i> Help</a>
+    </nav>
+
+    <br></br>
+    <ul id="menu" class="menuOff">
+      <li><a class="active" href="#TOOLBOX">TOOLBOX</a></li>
+      <li><a  href="#SERVER">SERVER</a>   <img src="../static/images/server.jpg" id="server" alt="SERVER" style="width:100px;height:100px;" draggable="true" ondragstart="return dragStart(event)"> </li>
+      <li><a href="#QUEUE">QUEUE</a> <img src="../static/images/queue.jpg" id="queue" alt="QUEUE" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)"> </li>
+      <li><a href="#CONNECTION">CONNECTION</a> <img   src="../static/images/connection.jpg" id="connection" alt="CONNECTION" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)"> </li></li>
+    </ul>
+
+    <center>
+        <div id="queue" draggable="true" ondragstart="return dragStart(event)"></div>
+        <div id="connection" draggable="true" ondragstart="return dragStart(event)"></div>
+        <div id="server" draggable="true" ondragstart="return dragStart(event)"></div>
+        <div id="boxB" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+    </center>
+    </form>
+
+</body>
+</html>

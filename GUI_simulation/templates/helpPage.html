@@ -1,0 +1,111 @@
+<html>
+<head>
+  <style>
+    .navbar {
+      width: 100%;
+      background-color: #555;
+      overflow: auto;
+    }
+
+    .navbar a {
+      float: left;
+      text-align: center;
+      padding: 12px;
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .navbar a:hover {
+      background-color: #000;
+    }
+
+    .active {
+      background-color: #04AA6D;
+    }
+
+    @media screen and (max-width: 500px) {
+      .navbar a {
+        float: none;
+        display: block;
+      }
+    }
+
+    .button{
+    background-color: #4CAF50;
+    border:none;
+    color:white;
+    padding:15px 32px;
+    text-align:left;
+    text-decoration:none;
+    display:inline-block;
+    font-size: 16px;
+    }
+  </style>
+  <script>
+         function button1() {
+            var x = document.getElementById("button1");
+            if(x.style.display == "none")
+            { x.style.display = "block"; }
+            else
+            { x.style.display = "none";  }
+         }
+
+		 function button2() {
+            var x = document.getElementById("button2");
+            if(x.style.display == "none")
+            { x.style.display = "block"; }
+            else
+            { x.style.display = "none";  }
+         }
+
+		 function button3() {
+            var x = document.getElementById("button3");
+            if(x.style.display == "none")
+            { x.style.display = "block"; }
+            else
+            { x.style.display = "none"; }
+         }
+  </script>
+</head>
+
+<body>
+  <form id="help-form" action="/help" method="GET">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <nav class="navbar">
+    <img class="logo" src="../static/images/logo.jpg" style="width:200px;height:100px;" ALIGN = left>
+    <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a href="/dragitems"><i class="fa fa-plus-square"></i> Create Simulation</a>
+    <a href="/contact"><i class="fa fa-envelope-o"></i> Contact us</a>
+  </nav>
+  </form>
+
+  <p style="font-size: 23px"> Welcome to the help page !   </p>
+  <br></br>
+  <button class="button button1", onclick = "button1()">Creating a new simulation </button>
+  <div id = "button1", style = "display:none">
+  <img class="homepage_help" src="../static/images/homepage_help.jpg" style="width:600px;height:400px;" ALIGN = center> <br></br>
+  To create a new simulation, by clicking the "Create Simulation" button you can access the simulation page. After this step toolbox will be displayed.
+  </div>
+
+
+  <br></br>
+  <button class="button button2", onclick = "button2()">Using Toolbox</button>
+  <div id = "button2", style = "display:none">
+  <img class="homepage_help" src="../static/images/toolbox_help1.jpg" style="width:600px;height:400px;" ALIGN = center> <br></br>
+  Toolbox consist of queue, connection and server components. You need to drag and drop each component one by one.
+  There should be a connection component between queue and server,otherwise simulation will not run because of the missing connection error.
+  </div>
+
+  <br></br>
+  <button class="button button3", onclick = "button3()">Run Simulation </button>
+  <div id = "button3", style = "display:none">
+  <img class="homepage_help" src="../static/images/simulation_help1.jpg" style="width:600px;height:400px;" ALIGN = center> <br></br>
+  After completing the drag and drop steps you need to click on Run Simulation button from the navbar.<br></br>
+  <img class="homepage_help" src="../static/images/simulation_help2.jpg" style="width:500px;height:300px;" ALIGN = center><br></br>
+  It redirects to another page that asks about the parameters.
+  You need to provide each value otherwise the simulation will not work because of missing parameter error.
+  </div>
+
+</body>
+</html>
