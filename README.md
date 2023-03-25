@@ -1,4 +1,4 @@
 # GradProject
-This is the graduation project part 2 this semester!!
+This is the last version of the project from the first semester and now we will be adding some new features on top of this version. See you in CNG492!
 
-The group membeers are: Erem - Ece - Ceazar
+The group members for the project are: Erem - Ece - Ceazar
