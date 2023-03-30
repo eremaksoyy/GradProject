@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input</title>
+    <script>
+        function validateInputs(){
+            var mu = document.forms["server-form"]["mu"].value;
+
+            if(mu == ""){
+                window.alert("No value is entered for MU");
+                return false;
+            }
+            else if(mu<0){
+                window.alert("MU can not be a negative value!");
+                return false;
+            }
+            else()
+            {
+                 console.log("Hello world!");
+            }
+
+        goBack();
+	}
+
+        function goBack(){
+            window.history.back();
+        }
+
+    </script>
+  </head>
+  <body>
+    <h1>Parameters for the server</h1>
+    <form id="server-form" action="/serverForm" method="POST">
+      <label for="mu">Coming Rate of Entities (Mu):</label><br>
+      <input type="text" id="mu" name="mu"><br><br>
+      <button type="submit" onclick="validateInputs()">Submit</button>
+    </form>
+  </body>
+</html>

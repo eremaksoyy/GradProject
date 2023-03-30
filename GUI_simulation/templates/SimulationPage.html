@@ -2,7 +2,9 @@
 <head>
 	<title> Welcome to GUI based queue simulation :) </title>
      <script type="text/javascript">
-
+	 
+        var count = 0;
+		const muArray = [];
         function dragStart(ev) {
             ev.dataTransfer.effectAllowed='move';
             ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
@@ -22,12 +24,33 @@
             ev.stopPropagation();
             return false;*/
 			ev.preventDefault();
-           var data=ev.dataTransfer.getData("Text");
+            var data=ev.dataTransfer.getData("Text");
             var nodeCopy = document.getElementById(data).cloneNode(true);
-            nodeCopy.id = "newId"; /* We cannot use the same ID */
+            nodeCopy.id = "newId";
             ev.target.appendChild(nodeCopy);
 			return false
         }
+		
+		
+		function openQueueForm(){
+		
+		       window.open("http://127.0.0.1:5000/queueForm","popup","width=400,height=200,scrollbars=yes, resizable=yes");
+        }
+
+		 
+		function openServerForm(){
+               
+			  
+			   window.open("http://127.0.0.1:5000/serverForm","popup","width=400,height=200,scrollbars=yes, resizable=yes"); 
+			   /*console.log(mu);
+			   muArray.push(mu);
+			   console.log(muArray);*/
+			
+			   count++;
+               console.log(count);
+			   
+        }
+	 
 
     </script>
 
@@ -39,7 +62,7 @@
 		width: 200px;
 		background-color: #f1f1f1;
 		border: 1px solid #555;
-	 font-weight:bold;
+	    font-weight:bold;
 	}
 
 	li a {
@@ -105,8 +128,14 @@
          }
          #boxA { background-color: #6633FF; width:75px; height:75px;  }
          #boxB { background-color: #FF6699; width:1000px; height:200px; }
-     </style>
+    </style>
+	
+	
+
+	
 </head>
+
+
 <body>
     <form id="drag-drop-items" action="/dragitems" method="GET">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -121,18 +150,19 @@
     <br></br>
     <ul id="menu" class="menuOff">
       <li><a class="active" href="#TOOLBOX">TOOLBOX</a></li>
-      <li><a  href="#SERVER">SERVER</a>   <img src="../static/images/server.jpg" id="server" alt="SERVER" style="width:100px;height:100px;" draggable="true" ondragstart="return dragStart(event)"> </li>
-      <li><a href="#QUEUE">QUEUE</a> <img src="../static/images/queue.jpg" id="queue" alt="QUEUE" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)"> </li>
-      <li><a href="#CONNECTION">CONNECTION</a> <img   src="../static/images/connection.jpg" id="connection" alt="CONNECTION" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)"> </li></li>
-    </ul>
+      <li><a  href="#SERVER">SERVER</a> <img  src="../static/images/server.jpg" id="server" alt="SERVER" style="width:100px;height:100px;" draggable="true" ondragstart="return dragStart(event)" onclick="openServerForm()" > </li>
+      <li><a href="#QUEUE">QUEUE</a> <img src="../static/images/queue.jpg" id="queue" alt="QUEUE" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)" onclick="openQueueForm()"  > </li>
+      <li><a href="#CONNECTION">CONNECTION</a> <img  src="../static/images/connection.jpg" id="connection" alt="CONNECTION" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)"> </li></li>
+    </ul>    
 
     <center>
-        <div id="queue" draggable="true" ondragstart="return dragStart(event)"></div>
+        <div id="queue" draggable="true" ondragstart="return dragStart(event)" onclick="openQueueForm()" ></div>
         <div id="connection" draggable="true" ondragstart="return dragStart(event)"></div>
-        <div id="server" draggable="true" ondragstart="return dragStart(event)"></div>
-        <div id="boxB" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+        <div id="server" draggable="true" ondragstart="return dragStart(event)" onclick="openServerForm()"></div>
+        <div id="boxB" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event) "></div>
     </center>
     </form>
+
 
 </body>
 </html>
