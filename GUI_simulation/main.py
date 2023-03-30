@@ -49,6 +49,31 @@ def get_inputs():
         return render_template('inputPage.html')
 
 
+@app.route('/serverForm', methods=['GET', 'POST'])
+def get_mu():
+    if request.method == 'POST':
+        # Get the values of numberOfEntities, lambda, and mu from the POST request
+        mu = request.form['mu']
+        # Convert the values to integers and floats
+        mu = float(mu)
+        render_template('SimulationPage.html', mu=mu)
+    return render_template('serverForm.html')
+
+
+@app.route('/queueForm', methods=['GET', 'POST'])
+def get_queue():
+        if request.method == 'POST':
+            # Get the values of numberOfEntities, lambda, and mu from the POST request
+            numberOfEntities = request.form['numberOfEntities']
+            lamda = request.form['lambda']
+
+            # Convert the values to integers and floats
+            numberOfEntities = int(numberOfEntities)
+            lamda = float(lamda)
+            render_template('SimulationPage.html', lamda=lamda, numberOfEntities=numberOfEntities)
+        return render_template('queueForm.html')
+
+
 def calculate_mql(Number_of_Entities, lamda, mue):
     time_Arrival = 0
     Iat = -1 / lamda * math.log(random.random())

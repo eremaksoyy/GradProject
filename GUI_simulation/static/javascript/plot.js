@@ -5,7 +5,7 @@ function plotLineGraph(dataList, labelList) {
         data: {
             labels: entities_list,
             datasets: [{
-                label: 'Line Graph',
+                label: 'Graph',
                 data: mql_values,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',

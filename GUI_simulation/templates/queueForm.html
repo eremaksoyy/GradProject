@@ -24,6 +24,7 @@
                 window.alert("LAMBDA can not be a negative number!");
                 return false;
             }
+
         goBack();
 	}
 
@@ -35,7 +36,7 @@
   </head>
   <body>
     <h1>Parameters for the queue</h1>
-    <form id="input-form" action="/input" method="POST">
+    <form id="input-form" action="/queueForm" method="POST">
       <label for="numberOfEntities">Number of entities:</label><br>
       <input type="text" id="numberOfEntities" name="numberOfEntities"><br>
       <label for="lambda">Serving Rate of Entities (Lambda):</label><br>
