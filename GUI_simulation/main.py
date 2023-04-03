@@ -29,23 +29,26 @@ def contact_call():
 def get_inputs():
     if request.method == 'POST':
         # Get the values of numberOfEntities, lambda, and mu from the POST request
-        array = request.form['lambda'].split(',')
-        lamda = array[0]
-        numberOfEntities = array[1]
-
+        # array = request.form['lambda'].split(',')
+        # lamda = array[0]
+        # numberOfEntities = array[1]
+        lamda = request.form['lambda']
+        numberOfEntities = request.form['numberOfEntities']
         mu = request.form['mu']
-
         # Convert the values to integers and floats
         numberOfEntities = int(numberOfEntities)
         lamda = float(lamda)
         mu = float(mu)
-
+        queue_size = request.form['queueSize']
         # Calculate the MQL values
         mql_values = calculate_mql(numberOfEntities, lamda, mu)
         entities_list = []
         for i in range(numberOfEntities):
             entities_list.append(i)
+        outputs_list = calculateoutputs(lamda, mu, queue_size)
         return render_template('simulation.html', mql_values=mql_values, entities_list=entities_list)
+        #render_template('simulatemm1l.html', outputs_list=outputs_list)
+
     else:
         return render_template('inputPage.html')
 
