@@ -29,8 +29,10 @@ def contact_call():
 def get_inputs():
     if request.method == 'POST':
         # Get the values of numberOfEntities, lambda, and mu from the POST request
-        numberOfEntities = request.form['numberOfEntities']
-        lamda = request.form['lambda']
+        array = request.form['lambda'].split(',')
+        lamda = array[0]
+        numberOfEntities = array[1]
+
         mu = request.form['mu']
 
         # Convert the values to integers and floats
@@ -40,38 +42,12 @@ def get_inputs():
 
         # Calculate the MQL values
         mql_values = calculate_mql(numberOfEntities, lamda, mu)
-        entities_list=[]
+        entities_list = []
         for i in range(numberOfEntities):
             entities_list.append(i)
-
         return render_template('simulation.html', mql_values=mql_values, entities_list=entities_list)
     else:
         return render_template('inputPage.html')
-
-
-@app.route('/serverForm', methods=['GET', 'POST'])
-def get_mu():
-    if request.method == 'POST':
-        # Get the values of numberOfEntities, lambda, and mu from the POST request
-        mu = request.form['mu']
-        # Convert the values to integers and floats
-        mu = float(mu)
-        render_template('SimulationPage.html', mu=mu)
-    return render_template('serverForm.html')
-
-
-@app.route('/queueForm', methods=['GET', 'POST'])
-def get_queue():
-        if request.method == 'POST':
-            # Get the values of numberOfEntities, lambda, and mu from the POST request
-            numberOfEntities = request.form['numberOfEntities']
-            lamda = request.form['lambda']
-
-            # Convert the values to integers and floats
-            numberOfEntities = int(numberOfEntities)
-            lamda = float(lamda)
-            render_template('SimulationPage.html', lamda=lamda, numberOfEntities=numberOfEntities)
-        return render_template('queueForm.html')
 
 
 def calculate_mql(Number_of_Entities, lamda, mue):
@@ -105,6 +81,30 @@ def calculate_mql(Number_of_Entities, lamda, mue):
         total_waiting_time += waiting
 
     return mql_list
+
+
+def calculateoutputs(lamda, mue, queue_size):
+    Outputs_arr = []
+    Traffic_intensity = lamda / mue
+    Average_number_of_customers = Traffic_intensity / (1 - Traffic_intensity)
+    Average_system_time = Average_number_of_customers / lamda
+    Number_customers_queue = Average_number_of_customers * Traffic_intensity
+
+    if queue_size > Number_customers_queue:
+
+        Queue_time = Number_customers_queue / lamda
+
+    else:
+        Queue_time = queue_size / lamda
+
+    Outputs_arr.append(Traffic_intensity)
+    Outputs_arr.append(Average_number_of_customers)
+    Outputs_arr.append(Average_system_time)
+    Outputs_arr.append(Number_customers_queue)
+    Outputs_arr.append(Queue_time)
+
+    return Outputs_arr
+
 
 
 if __name__ == '__main__':
