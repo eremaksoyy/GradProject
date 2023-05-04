@@ -5,12 +5,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../static/javascript/plot.js"></script>
   </head>
+
   <body>
-    <canvas id="myChart"></canvas>
-    <script>
+  <canvas id="myChart"></canvas>
+  <script>
       var mql_values = {{ mql_values|tojson|safe }};
       var entities_list = {{ entities_list|tojson|safe }};
-      plotLineGraph(mql_values, entities_list);
+     /* plotLineGraph(mql_values, entities_list); */
     </script>
+
   </body>
 </html>

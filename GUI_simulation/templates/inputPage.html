@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Input</title>
+
+    <canvas id="barChart" style="width:100%;max-width:500px;"></canvas>
+    </div>
+    <script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <script>
-        function validateInputs(){
+
+     function validateInputs(){
             var entityCount = document.forms["input-form"]["numberOfEntities"].value;
             var lambda = document.forms["input-form"]["lambda"].value;
             var mu = document.forms["input-form"]["mu"].value;
@@ -39,8 +46,58 @@
             }
         return true;
 	}
-    
+
+    function fun()
+      {
+        var arriverate = document.getElementById('lambda').value;
+        var servicerate = document.getElementById('mu').value;
+        var L = document.getElementById('queuesize').value;
+        var traffic_intensity = arriverate/servicerate;
+        var average_num_of_customers = traffic_intensity/(1-traffic_intensity);
+        var average_system_time = average_num_of_customers/arriverate;
+        var num_of_customers_queue = average_num_of_customers * traffic_intensity;
+        if(L>num_of_customers_queue)
+        {
+          queue_time = num_of_customers_queue/arriverate;
+        }
+
+        else
+        {
+          queue_time = L/arriverate;
+        }
+        var xValues = ["Traffic Intensity", "Number Of Customers", "Average System Time", "Number Of Customers In The Queue", "Queue Time"];
+        var yValues = [traffic_intensity, average_num_of_customers, average_system_time, num_of_customers_queue, queue_time];
+        var barColors = ["red", "green","blue","orange","brown"];
+
+         barchart = new Chart("barChart", {
+            type: "bar",
+            data: {
+              labels: xValues,
+              datasets: [{
+                label:"Measured Value",
+                backgroundColor: barColors,
+                  data: yValues
+                  }]
+            },
+         options: {
+          legend: {display: false},
+          title: {
+            display: false,
+            text: "M/M/1/L outputs"
+          }
+         }
+        });
+        barchart.update();
+        event.preventDefault();
+      }
+
+      function combine(){
+        var a = validateInputs();
+        var b = fun();
+        return a && b;
+      }
     </script>
+
   </head>
   <body>
     <h1>Calculate MQL values</h1>
@@ -51,9 +108,9 @@
       <input type="text" id="lambda" name="lambda"><br>
       <label for="mu">Coming Rate of Entities (Mu):</label><br>
       <input type="text" id="mu" name="mu"><br><br>
-        <label for="queueSize">Queue size for the limited queue:</label><br>
-      <input type="text" id="queueSize" name="queueSize"><br>
-      <button type="submit" onclick="return validateInputs();">Run</button>
+        <label for="queuesize">Queue size for the limited queue:</label><br>
+      <input type="text" id="queuesize" name="queuesize"><br>
+      <button type="submit" onclick="return combine();">Run</button>
     </form>
   </body>
 </html>
