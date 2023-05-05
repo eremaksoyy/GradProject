@@ -10,11 +10,6 @@ def home_call():
     return render_template('homePage.html')
 
 
-#@app.route('/dragitems', methods=['GET'])
-#def create_simulation():
-#    return render_template('SimulationPage.html')
-
-
 @app.route('/help', methods=['GET'])
 def help_call():
     return render_template('helpPage.html')
@@ -25,12 +20,17 @@ def contact_call():
     return render_template('contact.html')
 
 
-@app.route('/dragitems', methods=['GET', 'POST'])
+@app.route('/createSim', methods=['GET'])
+def createSim_call():
+    return render_template('selectionPage.html')
+
+
+@app.route('/mm1l', methods=['GET', 'POST'])
 def index():
+    Mu = 0
+    Lam = 0
+    entityC = 0
     if request.method == 'POST':
-        Mu=0
-        Lam=0
-        entityC=0
         for key, mu in request.form.items():
             if key.startswith("server"):
                 print(mu)
@@ -46,31 +46,38 @@ def index():
 
         return render_template('simulation_mm1l.html', Mu=Mu, Lam=Lam)
     else:
-        return render_template('SimulationPage.html')
+        return render_template('MM1LPage.html')
 
 
-@app.route('/input', methods=['GET', 'POST'])
+@app.route('/mm1', methods=['GET', 'POST'])
 def get_inputs():
+    Mu = 0
+    Lam = 0
+    entityC = 0
     if request.method == 'POST':
-        # Get the values of numberOfEntities, lambda, and mu from the POST request
-        numberOfEntities = request.form['numberOfEntities']
-        lamda = request.form['lambda']
-        mu = request.form['mu']
+        for key, mu in request.form.items():
+            if key.startswith("server"):
+                Mu = mu
+        for key, lambda_val in request.form.items():
+            if key.startswith("queue"):
+                splitArray = lambda_val.split(',')
+                lam = splitArray[0]
+                entityCount = splitArray[1]
+                Lam = lam
+                entityC = entityCount
 
-        # Convert the values to integers and floats
-        numberOfEntities = int(numberOfEntities)
-        lamda = float(lamda)
-        mu = float(mu)
+        entityC = int(entityC)
+        Lam = float(Lam)
+        Mu = float(Mu)
 
         # Calculate the MQL values
-        mql_values = calculate_mql(numberOfEntities, lamda, mu)
+        mql_values = calculate_mql(entityC, Lam, Mu)
         entities_list = []
-        for i in range(numberOfEntities):
+        for i in range(entityC):
             entities_list.append(i)
         return render_template('simulation_mm1.html', mql_values=mql_values, entities_list=entities_list)
-
     else:
-        return render_template('inputPage.html')
+        return render_template('MM1Page.html')
 
 
 def calculate_mql(Number_of_Entities, lamda, mue):
@@ -104,6 +111,7 @@ def calculate_mql(Number_of_Entities, lamda, mue):
         total_waiting_time += waiting
 
     return mql_list
+
 
 if __name__ == '__main__':
     app.run()

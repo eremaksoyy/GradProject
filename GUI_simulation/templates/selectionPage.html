@@ -1,5 +1,8 @@
 <html>
 <head>
+     <script src="../static/javascript/dragDropRelated.js"></script>
+     <script src="../static/javascript/barchart.js"></script>
+
   <style>
       .navbar {
         width: 100%;
@@ -38,17 +41,21 @@
 </head>
 
 <body>
-  <form id="home-form" action="/">
+<form id="home-form" action="/createSim">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <nav class="navbar">
       <img class="logo" src="../static/images/logo.jpg" style="width:200px;height:100px;" ALIGN = left>
       <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-      <a href="/createSim"><i class="fa fa-plus-square"></i> Create Simulation</a>
       <a href="/help"><i class="fa fa-hand-o-up"></i> Help</a>
       <a href="/contact"><i class="fa fa-envelope-o"></i> Contact us</a>
+
     </nav>
-    <p style="font-size: 23px"> Welcome to GUI-based queue simulation tool!  </p>
-    <img class="logo" src="../static/images/capture.jpg" style="width:600px;height:200px;" ALIGN = center>
+      <br><br><br>
+      <a href="/mm1"><i class="fa fa-check-square-o"></i> MM1 Simulation </a>
+      <br><br>
+      <a href="/mm1l"><i class="fa fa-check-square-o"></i> MM1L Simulation </a>
+
   </form>
+
 </body>
 </html>
