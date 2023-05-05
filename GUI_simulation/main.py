@@ -28,15 +28,23 @@ def contact_call():
 @app.route('/dragitems', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        for key, val in request.form.items():
+        Mu=0
+        Lam=0
+        entityC=0
+        for key, mu in request.form.items():
             if key.startswith("server"):
-                print(key, val)
-
-        for key, val in request.form.items():
+                print(mu)
+                Mu=mu
+        for key, lambda_val in request.form.items():
             if key.startswith("queue"):
-                print(key, val)
+                splitArray = lambda_val.split(',')
+                lam = splitArray[0]
+                entityCount = splitArray[1]
+                Lam=lam
+                entityC=entityCount
+                print(lam, entityCount)
 
-        return render_template('SimulationPage.html')
+        return render_template('simulation_mm1l.html', Mu=Mu, Lam=Lam)
     else:
         return render_template('SimulationPage.html')
 
@@ -59,7 +67,7 @@ def get_inputs():
         entities_list = []
         for i in range(numberOfEntities):
             entities_list.append(i)
-        return render_template('simulation.html', mql_values=mql_values, entities_list=entities_list)
+        return render_template('simulation_mm1.html', mql_values=mql_values, entities_list=entities_list)
 
     else:
         return render_template('inputPage.html')

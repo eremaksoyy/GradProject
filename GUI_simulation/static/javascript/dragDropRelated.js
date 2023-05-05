@@ -27,7 +27,7 @@
                nodeCopy.id = "newId";
                /nodeCopy.onclick = openServerForm();/
                ev.target.appendChild(nodeCopy);
-			   return false
+			   return false;
             }
             else if(data=="queue")
             {
@@ -35,14 +35,14 @@
                nodeCopy.id = "newId";
                /nodeCopy.onclick = openQueueForm();/
                ev.target.appendChild(nodeCopy);
-			   return false
+			   return false;
             }
             else
             {
                 var nodeCopy = document.getElementById(data).cloneNode(true);
                 nodeCopy.id = "newId";
                 ev.target.appendChild(nodeCopy);
-			    return false
+			    return false;
             }
         }
 
@@ -82,7 +82,7 @@
 			   console.log(element.name);
 			   document.getElementById("drag-drop-items").appendChild(element);
                queueCount++;
-               console.log(queueCount);
+               console.log("inside drop related func lambda, entityCount: " + lambda);
         }
 
 		function openServerForm(){
@@ -111,15 +111,18 @@
 			   element.setAttribute("name", "server"+ serverCount);
 			   document.getElementById("drag-drop-items").appendChild(element);
 			   serverCount++;
-               console.log(serverCount);
+			   console.log("inside drop related func mu: " + mu);
         }
 
      function validateInputs(){
-            if(lambda==""){
+             var splitArray = lambda.split(',');
+			 var lamda = Number(splitArray[0]);
+			 var entityCount = Number(splitArray[1]);
+            if(lamda==""){
                 window.alert("No value is entered for LAMBDA");
                 return false;
             }
-            else if(lambda<0){
+            else if(lamda<0){
                 window.alert("LAMBDA can not be a negative number!");
                 return false;
             }
@@ -129,6 +132,14 @@
             }
             else if(mu<0){
                 window.alert("MU can not be a negative value!");
+                return false;
+            }
+            else if(lambda>=mu){
+                window.alert("LAMBDA value should be less than MU value!");
+                return false;
+            }
+            else if (entityCount<1024){
+                window.alert("Enter a valid amount of entity (more than 1024)!");
                 return false;
             }
          return true;

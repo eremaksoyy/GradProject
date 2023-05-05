@@ -1,53 +1,8 @@
-
- function combine(){
-        var a = validateInputs();
-        var b = fun();
-        return a && b;
-      }
-
-
- function validateInputs(){
-      var entityCount = document.forms["input-form"]["numberOfEntities"].value;
-      var lambda = document.forms["input-form"]["lambda"].value;
-      var mu = document.forms["input-form"]["mu"].value;
-
-      if(entityCount==""){
-            window.alert("No value is entered for the NUMBER OF ENTITIES");
-            return false;
-      }
-      else if (entityCount<1024){
-            window.alert("Enter a valid amount of entity (more than 1024)!");
-            return false;
-      }
-      else if(lambda==""){
-            window.alert("No value is entered for LAMBDA");
-            return false;
-      }
-      else if(lambda<0){
-            window.alert("LAMBDA can not be a negative number!");
-            return false;
-      }
-      else if(mu == ""){
-            window.alert("No value is entered for MU");
-            return false;
-      }
-      else if(mu<0){
-            window.alert("MU can not be a negative value!");
-            return false;
-      }
-      else if(lambda>=mu){
-            window.alert("LAMBDA value should be less than MU value!");
-            return false;
-      }
-      return true;
-}
-
-
-function fun()
-      {
-        var arriverate = document.getElementById('lambda').value;
-        var servicerate = document.getElementById('mu').value;
-        var L = document.getElementById('queuesize').value;
+function fun(M, lam)
+{
+        var arriverate = lam;       // lambda
+        var servicerate = M;        // mu
+        var L = 5; // assign the queue size as 20 for now, take it from the user later
         var traffic_intensity = arriverate/servicerate;
         var average_num_of_customers = traffic_intensity/(1-traffic_intensity);
         var average_system_time = average_num_of_customers/arriverate;
@@ -72,7 +27,7 @@ function fun()
             data: {
               labels: xValues,
               datasets: [{
-                label:"Measured Value:",
+                label:"Measured Value ",
                 backgroundColor: barColors,
                   data: yValues
                   }]
@@ -86,6 +41,5 @@ function fun()
          }
         });
         barchart.update();
-        event.preventDefault();
-
-      }
+       // event.preventDefault();
+}
