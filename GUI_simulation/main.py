@@ -10,9 +10,9 @@ def home_call():
     return render_template('homePage.html')
 
 
-@app.route('/dragitems', methods=['GET'])
-def create_simulation():
-    return render_template('SimulationPage.html')
+#@app.route('/dragitems', methods=['GET'])
+#def create_simulation():
+#    return render_template('SimulationPage.html')
 
 
 @app.route('/help', methods=['GET'])
@@ -23,6 +23,22 @@ def help_call():
 @app.route('/contact', methods=['GET'])
 def contact_call():
     return render_template('contact.html')
+
+
+@app.route('/dragitems', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        for key, val in request.form.items():
+            if key.startswith("server"):
+                print(key, val)
+
+        for key, val in request.form.items():
+            if key.startswith("queue"):
+                print(key, val)
+
+        return render_template('SimulationPage.html')
+    else:
+        return render_template('SimulationPage.html')
 
 
 @app.route('/input', methods=['GET', 'POST'])

@@ -1,143 +1,10 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title> Welcome to GUI based queue simulation :) </title>
-     <script type="text/javascript">
-        var serverCount = 0;
-        var queueCount = 0;
-		const muArray = [];
+    <script src="../static/javascript/dragDropRelated.js"></script>
+    <script src="../static/javascript/barchart.js"></script>
 
-        function dragStart(ev) {
-            ev.dataTransfer.effectAllowed='move';
-            ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
-            ev.dataTransfer.setDragImage(ev.target,0,0);
-            return true;
-        }
-
-        function dragEnter(ev) {
-            event.preventDefault();
-            return true;
-        }
-
-        function dragOver(ev) {
-            return false;
-        }
-
-        function dragDrop(ev) {
-			ev.preventDefault();
-            var data=ev.dataTransfer.getData("Text");
-            if(data=="server")
-            {
-               var nodeCopy = document.getElementById(data).cloneNode(true);
-               nodeCopy.id = "newId";
-               /nodeCopy.onclick = openServerForm();/
-               ev.target.appendChild(nodeCopy);
-			   return false
-            }
-            else if(data=="queue")
-            {
-               var nodeCopy = document.getElementById(data).cloneNode(true);
-               nodeCopy.id = "newId";
-               /nodeCopy.onclick = openQueueForm();/
-               ev.target.appendChild(nodeCopy);
-			   return false
-            }
-            else
-            {
-                var nodeCopy = document.getElementById(data).cloneNode(true);
-                nodeCopy.id = "newId";
-                ev.target.appendChild(nodeCopy);
-			    return false
-            }
-        }
-
-        function openQueueForm(){
-			   lambda=window.prompt("Enter lambda,number of entities:", "");
-			   var error=1;
-			   while(error==1)
-			   {
-			           var stringArray = lambda.split(',');
-			           var lamdaNum = Number(stringArray[0]);
-			           var numOfEntities = Number(stringArray[1]);
-			           if(stringArray[1]==""){
-                          window.alert("No value is entered for the NUMBER OF ENTITIES");
-                          lambda=window.prompt("Enter lambda,number of entities:", "");
-                       }
-                       else if (numOfEntities<1024){
-                          window.alert("Enter a valid amount of entity (more than 1024)!");
-                          lambda=window.prompt("Enter lambda,number of entities:", "");
-                       }
-                       else if(stringArray[0]==""){
-                          window.alert("No value is entered for LAMBDA");
-                          lambda=window.prompt("Enter lambda,number of entities:", "");
-                       }
-                       else if(lamdaNum<0){
-                           window.alert("LAMBDA can not be a negative number!");
-                           lambda=window.prompt("Enter lambda,number of entities:", "");
-                       }
-                       else
-                       {
-                            error = 0;
-                       }
-			   }
-			   var element = document.createElement("input");
-			   element.setAttribute("type", "hidden");
-			   element.setAttribute("value", lambda);
-			   element.setAttribute("name", "queue"+queueCount);
-			   console.log(element.name);
-			   document.getElementById("drag-drop-items").appendChild(element);
-               queueCount++;
-               console.log(queueCount);
-        }
-
-		function openServerForm(){
-			   mu=window.prompt("Enter mu:", "");
-			   var error = 1;
-			   while(error==1)
-			   {
-			         var muNum  = Number(mu);
-			         if(mu == ""){
-                          window.alert("No value is entered for MU");
-                          mu=window.prompt("Enter mu:", "");
-                     }
-                     else if(muNum<0){
-                         window.alert("MU can not be a negative value!");
-                         mu=window.prompt("Enter mu:", "");
-                     }
-                     else
-                     {
-                          error = 0;
-                     }
-			   }
-
-			   var element = document.createElement("input");
-			   element.setAttribute("type", "hidden");
-			   element.setAttribute("value", mu);
-			   element.setAttribute("name", "server"+ serverCount);
-			   document.getElementById("drag-drop-items").appendChild(element);
-			   serverCount++;
-               console.log(serverCount);
-        }
-
-         function validateInputs(){
-            if(lambda==""){
-                window.alert("No value is entered for LAMBDA");
-                return false;
-            }
-            else if(lambda<0){
-                window.alert("LAMBDA can not be a negative number!");
-                return false;
-            }
-            else if(mu == ""){
-                window.alert("No value is entered for MU");
-                return false;
-            }
-            else if(mu<0){
-                window.alert("MU can not be a negative value!");
-                return false;
-            }
-         return true;
-	}
-    </script>
 	<style>
 	ul {
 		list-style-type: none;
@@ -205,29 +72,35 @@
 	  }
 }
 	</style>
+
     <style type="text/css">
          #boxA, #boxB, #boxC {
             float:left;padding:10px;margin:0px;-moz-user-select:none;
          }
          #boxA { background-color: #6633FF; width:75px; height:75px;  }
          #boxB { background-color: #FF6699; width:1000px; height:200px; }
+
     </style>
+
+
 </head>
+
+
 <body>
-<form id="drag-drop-items" action="/dragitems" method="POST">
+    <form id="drag-drop-items" action="/dragitems" method="POST">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <nav class="navbar">
       <img class="logo" src="../static/images/logo.jpg" style="width:200px;height:100px;" ALIGN = left>
       <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a>
-        <a href="/input"><i class="fa fa-caret-square-o-right"></i> Run Simulation</a>
+
       <a href="/help"><i class="fa fa-hand-o-up"></i> Help</a>
     </nav>
 
     <br></br>
     <ul id="menu" class="menuOff">
       <li><a class="active" href="#TOOLBOX">TOOLBOX</a></li>
-      <li><a href="#SERVER">SERVER</a> <img  src="../static/images/server.jpg" id="server" alt="SERVER" style="width:100px;height:100px;" draggable="true" ondragstart="return dragStart(event)" onclick="openServerForm()" > </li>
+      <li><a  href="#SERVER">SERVER</a> <img  src="../static/images/server.jpg" id="server" alt="SERVER" style="width:100px;height:100px;" draggable="true" ondragstart="return dragStart(event)" onclick="openServerForm()" > </li>
       <li><a href="#QUEUE">QUEUE</a> <img src="../static/images/queue.jpg" id="queue" alt="QUEUE" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)" onclick="openQueueForm()"  > </li>
       <li><a href="#CONNECTION">CONNECTION</a> <img  src="../static/images/connection.jpg" id="connection" alt="CONNECTION" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)"> </li></li>
     </ul>
@@ -239,7 +112,9 @@
         <div id="boxB" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
     </center>
 
-    <button class="fa fa-caret-square-o-right" type="submit" onclick="return validateInputs();" >Run Simulation</button>
+        <button type="submit" onclick="return combine();"> Run Simulation</button>
+
     </form>
+
 </body>
 </html>
