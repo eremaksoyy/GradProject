@@ -3,7 +3,7 @@
 <head>
 	<title> Welcome to GUI based queue simulation :) </title>
     <script src="../static/javascript/dragDropRelated.js"></script>
-    <script src="../static/javascript/mm1_graph.js"></script>
+    <script src="../static/javascript/mmcL_graph.js"></script>
 
 	<style>
 	ul {
@@ -71,10 +71,9 @@
 		display: block;
 	  }
 
-
 }
 
-	body{
+    body{
              background: rgb(195,238,174);
              background: radial-gradient(circle, rgba(195,238,174,0.499124649859944) 0%, rgba(148,187,233,0.499124649859944) 100%);
              font-family: Arial, sans-serif;
@@ -92,13 +91,12 @@
 </head>
 
 <body>
-    <form id="drag-drop-items" action="/mm1" method="POST">
+    <form id="drag-drop-items" action="/mmcl" method="POST">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <nav class="navbar">
       <img class="logo" src="../static/images/logo.jpg" style="width:200px;height:100px;" ALIGN = left>
       <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a>
-
       <a href="/help"><i class="fa fa-hand-o-up"></i> Help</a>
     </nav>
 
@@ -106,7 +104,7 @@
     <ul id="menu" class="menuOff">
       <li><a class="active" href="#TOOLBOX">TOOLBOX</a></li>
       <li><a  href="#SERVER">SERVER</a> <img  src="../static/images/server.jpg" id="server" alt="SERVER" style="width:100px;height:100px;" draggable="true" ondragstart="return dragStart(event)" onclick="openServerForm()" > </li>
-      <li><a href="#QUEUE">QUEUE</a> <img src="../static/images/queue.jpg" id="queue" alt="QUEUE" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)" onclick="openQueueForm('1')"  > </li>
+      <li><a href="#QUEUE">QUEUE</a> <img src="../static/images/queue.jpg" id="queue" alt="QUEUE" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)" onclick="openQueueForm('3')"  > </li>
       <li><a href="#CONNECTION">CONNECTION</a> <img  src="../static/images/connection.jpg" id="connection" alt="CONNECTION" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)"> </li></li>
     </ul>
 

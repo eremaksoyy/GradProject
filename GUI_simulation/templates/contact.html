@@ -32,24 +32,88 @@
             display: block;
           }
         }
+
+        body{
+
+           background: rgb(195,238,174);
+           background: radial-gradient(circle, rgba(195,238,174,1) 0%, rgba(148,187,233,1) 100%);
+           font-family: Arial, sans-serif;
+        }
+
+        .container {
+          display: flex;
+          justify-content: center; /* Center the cards horizontally */
+          align-items: center; /* Center the cards vertically */
+        }
+
+        /* Float four columns side by side */
+        .column {
+         float: left;
+         width: 20%;
+         padding: 10px 10px;
+         }
+
+
+        /* Clear floats after the columns */
+          .row:after {
+
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+
+         /* Style the counter cards */
+        .card {
+           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+           padding: 12px;
+           text-align: center;
+           background-color: #f1f1f1;
+           transition: 0.3s;
+           border-radius: 10px;
+           position: relative;
+           position: relative;
+           left: 220px; /* Adjust the left margin */
+
+        }
+
+        .card:hover {
+           box-shadow: 0 4px 30px 0 rgba(0,0,0,0.4);
+           text-align: center;
+        }
     </style>
 </head>
 <body>
+
     <form id="contact-form" action="/contact" method="GET">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <nav class="navbar">
           <img class="logo" src="../static/images/logo.jpg" style="width:200px;height:100px;" ALIGN = left>
           <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a>
         </nav>
-        <p style="font-size: 23px"> You can contact us for more information about the queue simulation tool:<br> </br>
-        <img src="../static/images/erem.jpg" style="width:100px;height:100px;" ALIGN = left> <br> </br>
-        Fatma Erem Aksoy : erem.aksoy@metu.edu.tr <br> </br>
-        <img src="../static/images/ece.jpg" style="width:100px;height:100px;" ALIGN = left> <br> </br>
-        Ece Erseven : ece.erseven@metu.edu.tr <br> </br>
-        <img src="../static/images/ahmed.jpg" style="width:100px;height:100px;" ALIGN = left> <br> </br>
-        Ahmed Zendah : ahmed.zendah@metu.edu.tr<br> </br>
-        <img src="../static/images/ceazar.jpg" style="width:100px;height:100px;" ALIGN = left> <br> </br>
-        Ceazar Hatokah : cezar.hatka@metu.edu.tr  </p>
-    </form>
+        <br> </br><br> </br>
+
+     <div class="column">
+        <div class="card">
+        <img src="../static/images/ece.jpg" style="width:100%">
+          <p>Ece Erseven: <br>ece.erseven@metu.edu.tr</p>
+        </div>
+    </div>
+
+    <div class="row" >
+    <div class="column">
+        <div class="card">
+        <img src="../static/images/erem.jpg" style="width:100%">
+          <p>Fatma Erem Aksoy: erem.aksoy@metu.edu.tr</p>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card">
+        <img src="../static/images/ceazar.jpg" style="width:100%">
+          <p>Ceazar Hatokah : cezar.hatka@metu.edu.tr</p>
+        </div>
+    </div>
+     </form>
 </body>
 </html>

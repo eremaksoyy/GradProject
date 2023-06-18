@@ -3,7 +3,7 @@
 <head>
 	<title> Welcome to GUI based queue simulation :) </title>
     <script src="../static/javascript/dragDropRelated.js"></script>
-    <script src="../static/javascript/barchart.js"></script>
+    <script src="../static/javascript/mm1L_graph.js"></script>
 
 	<style>
 	ul {
@@ -70,7 +70,16 @@
 		float: none;
 		display: block;
 	  }
+
 }
+
+    body{
+             background: rgb(195,238,174);
+             background: radial-gradient(circle, rgba(195,238,174,0.499124649859944) 0%, rgba(148,187,233,0.499124649859944) 100%);
+             font-family: Arial, sans-serif;
+    }
+
+
 	</style>
 
     <style type="text/css">
@@ -78,7 +87,7 @@
             float:left;padding:10px;margin:0px;-moz-user-select:none;
          }
          #boxA { background-color: #6633FF; width:75px; height:75px;  }
-         #boxB { background-color: #FF6699; width:1000px; height:200px; }
+         #boxB { background-color: #7da9dd; width:1000px; height:200px; }
 
     </style>
 </head>
@@ -97,7 +106,7 @@
     <ul id="menu" class="menuOff">
       <li><a class="active" href="#TOOLBOX">TOOLBOX</a></li>
       <li><a  href="#SERVER">SERVER</a> <img  src="../static/images/server.jpg" id="server" alt="SERVER" style="width:100px;height:100px;" draggable="true" ondragstart="return dragStart(event)" onclick="openServerForm()" > </li>
-      <li><a href="#QUEUE">QUEUE</a> <img src="../static/images/queue.jpg" id="queue" alt="QUEUE" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)" onclick="openQueueForm()"  > </li>
+      <li><a href="#QUEUE">QUEUE</a> <img src="../static/images/queue.jpg" id="queue" alt="QUEUE" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)" onclick="openQueueForm('2')"  > </li>
       <li><a href="#CONNECTION">CONNECTION</a> <img  src="../static/images/connection.jpg" id="connection" alt="CONNECTION" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)"> </li></li>
     </ul>
 
@@ -107,7 +116,7 @@
         <div id="queue" draggable="true" ondragstart="return dragStart(event)" ></div>
         <div id="boxB" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
     </center>
-        <button type="submit" onclick="return validateInputs();"> Run Simulation</button>
+        <button type="submit" style="background-color: #04AA6D; font-size: 16px; padding: 10px 20px; color: white; font-weight: bold; border: none; margin-left: 20px" onclick="return validateInputs();"> Run Simulation </button>
     </form>
 
 </body>

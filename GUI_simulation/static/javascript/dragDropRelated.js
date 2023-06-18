@@ -46,15 +46,53 @@
             }
         }
 
-        function openQueueForm(){
-			   lambda=window.prompt("Enter lambda,number of entities:", "");
+        function openQueueForm(selection)
+        {
+               if(selection==1)
+               {
+                   lambda=window.prompt("Enter lambda,number of entities:", "");
+               }
+               else if(selection==2)
+               {
+                  lambda=window.prompt("Enter lambda,number of entities,queue size:", "");
+               }
+
+               else if(selection==3)
+               {
+                  lambda=window.prompt("Enter lambda,number of entities,limit:", "");
+               }
+
 			   var error=1;
 			   while(error==1)
 			   {
 			           var stringArray = lambda.split(',');
 			           var lamdaNum = Number(stringArray[0]);
 			           var numOfEntities = Number(stringArray[1]);
-			           if(stringArray[1]==""){
+			           var queueSize = Number(stringArray[2]);
+
+			           if(selection==2 && typeof(stringArray[2])=='undefined')
+			           {
+			               window.alert("No value is entered for the Queue Size");
+			               lambda=window.prompt("Enter lambda,number of entities,queue size:", "");
+			           }
+			           else if(selection==2 && (queueSize < 0 || queueSize == 0))
+			           {
+			               window.alert("Queue Size should be a positive number !");
+			               lambda=window.prompt("Enter lambda,number of entities,queue size:", "");
+
+			           }
+			           else if(selection==3 && typeof(stringArray[2])=='undefined')
+			           {
+			               window.alert("No value is entered for the Limit");
+			               lambda=window.prompt("Enter lambda,number of entities,limit:", "");
+			           }
+			           else if(selection==3 && (queueSize < 0 || queueSize == 0))
+			           {
+			               window.alert("Limit should be a positive number !");
+			               lambda=window.prompt("Enter lambda,number of entities,limit:", "");
+
+			           }
+			           else if(stringArray[1]==""){
                           window.alert("No value is entered for the NUMBER OF ENTITIES");
                           lambda=window.prompt("Enter lambda,number of entities:", "");
                        }
@@ -80,10 +118,8 @@
 			   element.setAttribute("type", "hidden");
 			   element.setAttribute("value", lambda);
 			   element.setAttribute("name", "queue"+queueCount);
-			   console.log(element.name);
 			   document.getElementById("drag-drop-items").appendChild(element);
                queueCount++;
-               console.log("inside drop related func lambda, entityCount: " + lambda);
         }
 
 		function openServerForm(){
@@ -112,7 +148,12 @@
 			   element.setAttribute("name", "server"+ serverCount);
 			   document.getElementById("drag-drop-items").appendChild(element);
 			   serverCount++;
-			   console.log("inside drop related func mu: " + mu);
+			   var element = document.createElement("input");
+			   element.setAttribute("type", "hidden");
+			   element.setAttribute("value", serverCount);
+			   element.setAttribute("name", "count"+ serverCount);
+			   document.getElementById("drag-drop-items").appendChild(element);
+
         }
 
      function validateInputs(){

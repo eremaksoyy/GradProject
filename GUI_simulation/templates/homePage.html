@@ -1,6 +1,7 @@
 <html>
 <head>
   <style>
+
       .navbar {
         width: 100%;
         background-color: #555;
@@ -34,10 +35,27 @@
           display: block;
         }
       }
+
+      body {
+      background: rgb(187,173,240);
+      background: linear-gradient(90deg, rgba(187,173,240,1) 0%, rgba(148,187,233,1) 50%, rgba(195,238,174,1) 100%);
+      font-family: Arial, sans-serif;
+
+      }
+
+      .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+}
+
+
   </style>
 </head>
 
 <body>
+
   <form id="home-form" action="/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <nav class="navbar">
@@ -47,8 +65,9 @@
       <a href="/help"><i class="fa fa-hand-o-up"></i> Help</a>
       <a href="/contact"><i class="fa fa-envelope-o"></i> Contact us</a>
     </nav>
-    <p style="font-size: 23px"> Welcome to GUI-based queue simulation tool!  </p>
-    <img class="logo" src="../static/images/capture.jpg" style="width:600px;height:200px;" ALIGN = center>
+    <br><br>
+    <p style="font-size: 23px" ALIGN = center> Welcome to GUI-based queue simulation tool !  </p>
+    <img class="center" src="../static/images/capture.jpg" style="width:400px;height:300px;" ALIGN = center>
   </form>
 </body>
 </html>

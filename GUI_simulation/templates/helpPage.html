@@ -32,7 +32,7 @@
     }
 
     .button{
-    background-color: #4CAF50;
+    background-color: #04AA6D;
     border:none;
     color:white;
     padding:15px 32px;
@@ -41,31 +41,44 @@
     display:inline-block;
     font-size: 16px;
     }
+
+
+    body{
+             font-family: Arial, sans-serif;
+             background: rgb(246,246,220);
+             background: linear-gradient(90deg, rgba(246,246,220,1) 45%, rgba(134,236,226,1) 100%);
+
+    }
   </style>
   <script>
-         function button1() {
-            var x = document.getElementById("button1");
+         function button(selection) {
+
+            if(selection == '1')
+            {
+              var x = document.getElementById("button1");
+            }
+            else if(selection == '2')
+            {
+               var x = document.getElementById("button2");
+            }
+            else if(selection == '3')
+            {
+               var x = document.getElementById("button3");
+            }
+             else if(selection == '4')
+            {
+               var x = document.getElementById("button4");
+            }
+               else if(selection == '5')
+            {
+               var x = document.getElementById("button5");
+            }
             if(x.style.display == "none")
             { x.style.display = "block"; }
             else
             { x.style.display = "none";  }
          }
 
-		 function button2() {
-            var x = document.getElementById("button2");
-            if(x.style.display == "none")
-            { x.style.display = "block"; }
-            else
-            { x.style.display = "none";  }
-         }
-
-		 function button3() {
-            var x = document.getElementById("button3");
-            if(x.style.display == "none")
-            { x.style.display = "block"; }
-            else
-            { x.style.display = "none"; }
-         }
   </script>
 </head>
 
@@ -75,36 +88,52 @@
   <nav class="navbar">
     <img class="logo" src="../static/images/logo.jpg" style="width:200px;height:100px;" ALIGN = left>
     <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a>
-    <a href="/dragitems"><i class="fa fa-plus-square"></i> Create Simulation</a>
+    <a href="/createSim"><i class="fa fa-plus-square"></i> Create Simulation</a>
     <a href="/contact"><i class="fa fa-envelope-o"></i> Contact us</a>
   </nav>
   </form>
 
-  <p style="font-size: 23px"> Welcome to the help page !   </p>
   <br></br>
-  <button class="button button1", onclick = "button1()">Creating a new simulation </button>
-  <div id = "button1", style = "display:none">
-  <img class="homepage_help" src="../static/images/homepage_help.jpg" style="width:600px;height:400px;" ALIGN = center> <br></br>
-  To create a new simulation, by clicking the "Create Simulation" button you can access the simulation page. After this step toolbox will be displayed.
-  </div>
-
-
-  <br></br>
-  <button class="button button2", onclick = "button2()">Using Toolbox</button>
-  <div id = "button2", style = "display:none">
-  <img class="homepage_help" src="../static/images/toolbox_help1.jpg" style="width:600px;height:400px;" ALIGN = center> <br></br>
-  Toolbox consist of queue, connection and server components. You need to drag and drop each component one by one.
-  There should be a connection component between queue and server,otherwise simulation will not run because of the missing connection error.
+  <button class="button button1", onclick = "button('1')">Creating a new simulation </button>
+  <div id = "button1", style = "display:none"><br></br>
+  <img class="homepage_help" src="../static/images/homepage_help1.jpg" style="width:700px;height:400px;"  ALIGN = center> <br></br>
+    To create a new simulation, by clicking the "Create Simulation" button, the simulation type selection  <br></br>
+    page can be accessed. After this step you can choose the simulation type.
   </div>
 
   <br></br>
-  <button class="button button3", onclick = "button3()">Run Simulation </button>
-  <div id = "button3", style = "display:none">
-  <img class="homepage_help" src="../static/images/simulation_help1.jpg" style="width:600px;height:400px;" ALIGN = center> <br></br>
-  After completing the drag and drop steps you need to click on Run Simulation button from the navbar.<br></br>
-  <img class="homepage_help" src="../static/images/simulation_help2.jpg" style="width:500px;height:300px;" ALIGN = center><br></br>
-  It redirects to another page that asks about the parameters.
-  You need to provide each value otherwise the simulation will not work because of missing parameter error.
+  <button class="button button2", onclick = "button('2')">Selecting Simulation Type</button>
+  <div id = "button2", style = "display:none"><br></br>
+  <img class="homepage_help" src="../static/images/homepage_help2.jpg" style="width:700px;height:400px;" ALIGN = center> <br></br>
+    The selection page displays four types of queuing simulations: M/M/1, M/M/1/L, M/M/C, and M/M/C/L. <br></br>
+    Simulation type can be selected by clicking on it. After this step the toolbox will be displayed.
+  </div>
+
+  <br></br>
+  <button class="button button3", onclick = "button('3')"  >Using Toolbox</button>
+  <div id = "button3", style = "display:none"><br></br>
+  <img class="homepage_help" src="../static/images/homepage_help3.jpg" style="width:700px;height:400px;" ALIGN = center> <br></br>
+   Toolbox consist of queue, connection and server components. Each component should be dragged <br></br>
+   and dropped one by one. At least one server and queue component should be dropped on the  <br></br>
+   canvas to run the simulation.
+  </div>
+
+  <br></br>
+  <button class="button button4", onclick = "button('4')">Inputting Parameters</button>
+  <div id = "button4", style = "display:none"><br></br>
+  <img class="homepage_help" src="../static/images/homepage_help4.jpg" style="width:700px;height:400px;" ALIGN = center> <br></br>
+    M/M/1 and M/M/C simulation types for the queue component lambda and the number of entities <br></br>
+    should be entered as inputs; for M/M/1/L and M/M/C/L type simulations, the limit also should <br></br>
+    be provided for the queue component. For all simulation types, the server component mue  <br></br>
+    value should be entered for each server individually.
+  </div>
+
+  <br></br>
+  <button class="button button5", onclick = "button('5')" >Downloading Graph Images</button>
+  <div id = "button5", style = "display:none"><br></br>
+  <img class="homepage_help" src="../static/images/homepage_help5.jpg" style="width:700px;height:400px;" ALIGN = center> <br></br>
+    After running the simulation, the generated graph can be downloaded in png format. <br></br>
+
   </div>
 
 </body>

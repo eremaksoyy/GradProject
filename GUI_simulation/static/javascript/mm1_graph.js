@@ -3,10 +3,10 @@ function plotLineGraph(dataList, labelList) {
     var chart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: entities_list,
+            labels: labelList,
             datasets: [{
                 label: 'Graph',
-                data: mql_values,
+                data: dataList,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1,
@@ -20,14 +20,20 @@ function plotLineGraph(dataList, labelList) {
                         padding: 20,
                     },
                     scaleLabel: {
-                        display: true,
-                        labelString: 'Entities'
+                        display: true
+                    },
+                    title: {
+                      display: true,
+                      text: 'Number of Entities'
                     }
                 }],
                 yAxes: [{
                     scaleLabel: {
-                        display: true,
-                        labelString: 'Performance Measure Values'
+                        display: true
+                    },
+                    title: {
+                      display: true,
+                      text: 'MQL Value'
                     }
                 }]
             }
@@ -35,4 +41,10 @@ function plotLineGraph(dataList, labelList) {
     });
 }
 
-plotLineGraph(dataList, labelList);
+function downloadImage() {
+    var canvas = document.getElementById('myChart');
+    var link = document.createElement('a'); // temporary link element
+    link.href = canvas.toDataURL('image/png'); // Set the link's href attribute to the image data URL
+    link.download = 'MM1graph.png'; // Set the link's download attribute with a desired filename
+    link.click();
+}
