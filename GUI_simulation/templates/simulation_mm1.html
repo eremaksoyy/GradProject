@@ -3,14 +3,17 @@
   <head>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../static/javascript/plot.js"></script>
+    <script src="../static/javascript/mm1_graph.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
+
   <body>
-    <canvas id="myChart"></canvas>
-    <script>
+  <canvas id="myChart"></canvas>
+  <script>
       var mql_values = {{ mql_values|tojson|safe }};
       var entities_list = {{ entities_list|tojson|safe }};
       plotLineGraph(mql_values, entities_list);
-    </script>
+   </script>
+    <button id="downloadChart" onclick="downloadImage()"> Download M/M/1 Graph Results </button>
   </body>
 </html>

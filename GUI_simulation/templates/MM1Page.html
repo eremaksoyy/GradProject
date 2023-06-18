@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Welcome to GUI based queue simulation :) </title>
+    <script src="../static/javascript/dragDropRelated.js"></script>
+    <script src="../static/javascript/mm1_graph.js"></script>
+
+	<style>
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		width: 200px;
+		background-color: #f1f1f1;
+		border: 1px solid #555;
+	    font-weight:bold;
+	}
+
+	li a {
+		display: block;
+		color: #000;
+		padding: 8px 16px;
+		text-decoration: none;
+	}
+
+	li {
+		text-align: center;
+		border-bottom: 1px solid #555;
+	}
+
+	li:last-child {
+		border-bottom: none;
+	}
+
+	li a.active {
+		background-color: #020005;
+		color: white;
+	}
+
+	li a:hover:not(.active) {
+		background-color: #555;
+		color: white;
+	}
+
+	.navbar {
+	  width: 100%;
+	  background-color: #555;
+	  overflow: auto;
+	}
+
+	.navbar a {
+	  float: left;
+	  text-align: center;
+	  padding: 12px;
+	  color: white;
+	  text-decoration: none;
+	  font-size: 17px;
+	}
+
+	.navbar a:hover {
+	  background-color: #000;
+	}
+
+	.active {
+	  background-color: #04AA6D;
+	}
+
+	@media screen and (max-width: 500px) {
+	  .navbar a {
+		float: none;
+		display: block;
+	  }
+
+
+}
+
+	body{
+             background: rgb(195,238,174);
+             background: radial-gradient(circle, rgba(195,238,174,0.499124649859944) 0%, rgba(148,187,233,0.499124649859944) 100%);
+             font-family: Arial, sans-serif;
+    }
+	</style>
+
+    <style type="text/css">
+         #boxA, #boxB, #boxC {
+            float:left;padding:10px;margin:0px;-moz-user-select:none;
+         }
+         #boxA { background-color: #6633FF; width:75px; height:75px;  }
+         #boxB { background-color: #7da9dd; width:1000px; height:200px; }
+
+    </style>
+</head>
+
+<body>
+    <form id="drag-drop-items" action="/mm1" method="POST">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <nav class="navbar">
+      <img class="logo" src="../static/images/logo.jpg" style="width:200px;height:100px;" ALIGN = left>
+      <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+
+      <a href="/help"><i class="fa fa-hand-o-up"></i> Help</a>
+    </nav>
+
+    <br></br>
+    <ul id="menu" class="menuOff">
+      <li><a class="active" href="#TOOLBOX">TOOLBOX</a></li>
+      <li><a  href="#SERVER">SERVER</a> <img  src="../static/images/server.jpg" id="server" alt="SERVER" style="width:100px;height:100px;" draggable="true" ondragstart="return dragStart(event)" onclick="openServerForm()" > </li>
+      <li><a href="#QUEUE">QUEUE</a> <img src="../static/images/queue.jpg" id="queue" alt="QUEUE" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)" onclick="openQueueForm('1')"  > </li>
+      <li><a href="#CONNECTION">CONNECTION</a> <img  src="../static/images/connection.jpg" id="connection" alt="CONNECTION" style="width:100px;height:30px;" draggable="true" ondragstart="return dragStart(event)"> </li></li>
+    </ul>
+
+    <center>
+        <div id="connection" draggable="true" ondragstart="return dragStart(event)"></div>
+        <div id="server" draggable="true" ondragstart="return dragStart(event)"></div>
+        <div id="queue" draggable="true" ondragstart="return dragStart(event)" ></div>
+        <div id="boxB" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)"></div>
+    </center>
+        <button type="submit" style="background-color: #04AA6D; font-size: 16px; padding: 10px 20px; color: white; font-weight: bold; border: none; margin-left: 20px" onclick="return validateInputs();"> Run Simulation </button>
+    </form>
+
+</body>
+</html>

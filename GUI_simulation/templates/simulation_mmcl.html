@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../static/javascript/mmcL_graph.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+     <canvas id="mmcl-graph"></canvas>
+     <canvas id="SimMQLmmcl"></canvas>
+  <script>
+      var mue = {{ mue|tojson|safe }}
+      var lamda = {{ lamda|tojson|safe }}
+      var server = {{ server|tojson|safe }}
+      var limit = {{ limit|tojson|safe }}
+      var mql_list = {{ mql_list|tojson|safe }}
+      var entity_list = {{ entity_list|tojson|safe }}
+
+      simulationMQL(mql_list, entity_list);
+   //   plotMQLGraph(lamda, mue, server, limit);
+
+    </script>
+    <button id="downloadChart" onclick="downloadImage()"> Download M/M/C/L Graph Results</button>
+
+
+</body>
+</html>
