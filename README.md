@@ -1,4 +1,4 @@
 # GradProject
-This is the last version of the project from the first semester and now we will be adding some new features on top of this version. See you in CNG492!
+This is the first version of the project made as a Graduation Project of Computer Engineering Department in METU NCC. This is a GUI-based web application for the simulations of queuing networks, for only M/M/1 type.
 
-The group members for the project are: Erem - Ece - Ceazar
+The group members for the project are: Erem Aksoy - Ece Erseven - Ceazar Hatomah
